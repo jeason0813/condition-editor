@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { APPLY_FILTER, CLEAR_FILTER, SET_PROPERTY, SET_OPERATION, SET_INPUT } from '../constants/ActionTypes';
-import { PRODUCTS, PROPERTIES, OPERATORS } from '../constants/data';
+import { PRODUCTS, PROPERTIES, OPERATORS } from '../constants/Data';
 
 const initialState = {
   allProducts: PRODUCTS,
