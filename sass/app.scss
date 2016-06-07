@@ -1,0 +1,95 @@
+@import '../node_modules/foundation-sites/dist/foundation.css';
+@import './utils/_media_queries.scss';
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+$open-sans: 'Open Sans', sans-serif;
+$bg-body: #E3F2FD;
+$bg-filter: #BBDEFB;
+$bg-product: #BBDEFB;
+$bg-button: #2196F3;
+$text-highlight: #ffffff;
+$content-width: 1000px;
+$product-dimensions: 200px;
+$input-width: 200px;
+$input-height: 40px;
+
+html {
+	display: flex;
+	justify-content: center;
+}
+
+body, .app {
+	background: $bg-body;
+	font-family: $open-sans;
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+button {
+	background-color: $bg-button;
+	color: $text-highlight;
+	height: $input-height;
+	padding: 0px 15px 0px 15px;
+}
+
+.filter-container {
+	background-color: $bg-filter;
+	width: 100%;
+}
+
+.filter-form {
+	background-color: $bg-filter;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	max-width: $content-width;
+	padding: 30px 0px 30px 0px;
+
+	select {
+		height: $input-height;
+		margin: 0px 20px 0px 0px;
+		width: $input-width;
+
+		@include mobile {
+			margin: 0px 0px 20px 0px;
+			width: 100%;
+		}
+	}
+
+	input {
+		height: $input-height;
+		margin-right: 20px;
+		padding: 0.5em;
+		width: $input-width;
+
+		@include mobile {
+			margin: 0px 0px 20px 0px;
+			width: 100%;
+		}
+	}
+
+	button:last-child {
+		margin-left: 20px;
+	}
+
+	@include mobile {
+		padding: 25px;
+	}
+}
+
+.products {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 10px auto 0px auto;
+	max-width: $content-width;
+}
+
+.product {
+	background-color: $bg-product;
+	height: $product-dimensions;
+	margin: 10px;
+	padding: 15px;
+	width: $product-dimensions;
+}
