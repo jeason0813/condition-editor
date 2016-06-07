@@ -7,7 +7,7 @@ const initialState = {
   filteredProducts: PRODUCTS,
   filters: initFilters(PROPERTIES),
   ops: [],
-  property: {},
+  property: null,
   operation: '',
   additionalInput: '',
   showAdditionalInput: false,
@@ -117,8 +117,7 @@ export default function products(state = initialState, action = {}) {
     case APPLY_FILTER:
       const filteredProducts = _.filter(state.allProducts, (product) => {
         if (state.additionalInput === '' && state.operation !== 'any' && state.operation !== 'none') return true;
-        const property = Number.isNaN(parseInt(state.property)) ? state.property : parseInt(state.property);
-        return operatorFns[state.operation](state.additionalInput, _.find(product.properties, prop => prop.property_id === property));
+        return operatorFns[state.operation](state.additionalInput, _.find(product.properties, prop => prop.property_id === state.property));
       });
 
       return {
@@ -129,7 +128,7 @@ export default function products(state = initialState, action = {}) {
     case CLEAR_FILTER:
       return {
         ...state,
-        property: {},
+        property: null,
         ops: [],
         additionalInput: '',
         showAdditionalInput: false,
@@ -137,9 +136,12 @@ export default function products(state = initialState, action = {}) {
       };
 
     case SET_PROPERTY:
+      let property = parseInt(action.property);
+      if (Number.isNaN(property)) property = action.property;
+
       return {
         ...state,
-        property: action.property,
+        property,
         ops: state.filters[action.property].validOps,
       }
 
