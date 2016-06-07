@@ -5,11 +5,11 @@ export default class Filters extends Component {
   constructor(props) {
     super(props);
 
-    this._onSubmit = this._onSubmit.bind(this);
     this._onClear = this._onClear.bind(this);
+    this._onSubmit = this._onSubmit.bind(this);
     this._setInput = this._setInput.bind(this);
-    this._setProperty = this._setProperty.bind(this);
     this._setOperation = this._setOperation.bind(this);
+    this._setProperty = this._setProperty.bind(this);
   }
 
   _onSubmit(e) {
@@ -27,16 +27,20 @@ export default class Filters extends Component {
     this.props.setInput(e.target.value);
   }
 
-  _setProperty(e) {
-    this.props.setProperty(e.target.value);
-  }
-
   _setOperation(e) {
     this.props.setOperation(e.target.value);
   }
 
+  _setProperty(e) {
+    this.props.setProperty(e.target.value);
+  }
+
   render() {
-    const { properties, ops } = this.props;
+    const {
+      enableInput,
+      ops,
+      properties,
+    } = this.props;
 
     const propertyOptions = (
       <select defaultValue="" onChange={this._setProperty} ref="properties">
@@ -58,12 +62,14 @@ export default class Filters extends Component {
       </select>
     );
 
+    const placeholderText = enableInput ? "Enter value..." : "N/A";
+
     return (
       <div className="filter-container">
         <form className="filter-form" onSubmit={this._onSubmit}>
           {propertyOptions}
           {operationOptions}
-          <input placeholder="Enter value..." onChange={this._setInput} ref="input" />
+          <input disabled={!enableInput} placeholder={placeholderText} onChange={this._setInput} ref="input" />
           <button onClick={this._onSubmit}>Submit</button>
           <button onClick={this._onClear}>Clear</button>
         </form>
@@ -74,10 +80,11 @@ export default class Filters extends Component {
 
 Filters.propTypes = {
   applyFilter: PropTypes.func.isRequired,
-  setProperty: PropTypes.func.isRequired,
-  setOperation: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
-  setInput: PropTypes.func.isRequired,
+  enableInput: PropTypes.bool.isRequired,
   ops: PropTypes.array.isRequired,
   properties: PropTypes.object.isRequired,
+  setProperty: PropTypes.func.isRequired,
+  setOperation: PropTypes.func.isRequired,
+  setInput: PropTypes.func.isRequired,
 };

@@ -10,14 +10,14 @@ const initialState = {
   property: null,
   operation: '',
   additionalInput: '',
-  showAdditionalInput: false,
+  enableInput: false,
 };
 
 function initFilters(props) {
   const filters = {};
 
-  /* Note: Currently not the most flexible initialization, but for now
-  **       I am simply hard-coding the validOps per prop type based on
+  /* Note: Tis is not currently not the most flexible initialization, but for
+  **       now I am simply hard-coding the validOps per prop type based on
   **       the requirements listed here:
   **       http://salsify.github.io/condition-editor-coding-exercise/
   */
@@ -131,7 +131,7 @@ export default function products(state = initialState, action = {}) {
         property: null,
         ops: [],
         additionalInput: '',
-        showAdditionalInput: false,
+        enableInput: false,
         filteredProducts: state.allProducts,
       };
 

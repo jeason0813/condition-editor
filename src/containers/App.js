@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as ProductActions from '../actions';
 
+import * as ProductActions from '../actions';
 import ProductSection from '../components/ProductSection';
 import Filters from '../components/Filters';
 
@@ -12,14 +12,20 @@ class App extends Component {
   }
 
   render() {
-    const { products, filters, showAdditionalInput, ops, actions } = this.props;
+    const {
+      actions,
+      enableInput,
+      filters,
+      ops,
+      products,
+    } = this.props;
 
     return (
       <div className="app">
         <Filters {...actions}
-                 properties={filters}
+                 enableInput={enableInput}
                  ops={ops}
-                 showAdditionalInput={showAdditionalInput} />
+                 properties={filters} />
         <ProductSection products={products} />
       </div>
     )
@@ -27,19 +33,19 @@ class App extends Component {
 };
 
 App.propTypes = {
-  products: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  enableInput: PropTypes.bool.isRequired,
   filters: PropTypes.object.isRequired,
   ops: PropTypes.array.isRequired,
-  showAdditionalInput: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired,
+  products: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    products: state.products.filteredProducts,
+    enableInput: state.products.enableInput,
     filters: state.products.filters,
     ops: state.products.ops,
-    showAdditionalInput: state.products.showAdditionalInput,
+    products: state.products.filteredProducts,
   };
 };
 
