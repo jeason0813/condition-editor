@@ -16,3 +16,9 @@ To test:
 ```
 npm run test
 ```
+
+To build:
+
+```
+npm run build
+```

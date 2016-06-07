@@ -16,7 +16,7 @@ const initialState = {
 function initFilters(props) {
   const filters = {};
 
-  /* Note: Tis is not currently not the most flexible initialization, but for
+  /* Note: This is not currently not the most flexible initialization, but for
   **       now I am simply hard-coding the validOps per prop type based on
   **       the requirements listed here:
   **       http://salsify.github.io/condition-editor-coding-exercise/
